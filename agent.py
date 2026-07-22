@@ -11,7 +11,7 @@ os.environ["SSL_CERT_FILE"] = certifi.where()
 os.environ["REQUESTS_CA_BUNDLE"] = certifi.where()
 
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.messages import SystemMessaage
+from langchain_core.messages import SystemMessage
 from langgraph.graph import StateGraph, START, MessagesState
 from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.sqlite import SqliteSaver
@@ -21,7 +21,7 @@ from tools import tools
 
 Path("data").mkdir(exist_ok=True)
 
-DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
 
 ALLOWED_MODELS = {
     "gemini-2.5-flash",
@@ -83,7 +83,8 @@ def build_agent(model_name: str):
     selected_model = normalize_model_name(model_name)
 
     llm = ChatGoogleGenerativeAI(
-        model_name=selected_model,
+
+        model=selected_model,     
         temperature=0.3,
         streaming=True
     )
@@ -91,7 +92,7 @@ def build_agent(model_name: str):
     llm_with_tools = llm.bind_tools(tools)
 
     def chatbot_node(state: MessagesState):
-        messages = [SystemMessaage(content=SYSTEM_PROMPT)] + state["messages"]
+        messages = [SystemMessage(content=SYSTEM_PROMPT)] + state["messages"]
 
         response = llm_with_tools.invoke(messages)
 
