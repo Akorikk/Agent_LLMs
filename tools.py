@@ -92,8 +92,6 @@ def recall_memory(query: str) -> str:
 
 
 
-
-
 tools = [
     calculator,
     search_uploaded_documents,
