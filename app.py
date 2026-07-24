@@ -1,7 +1,7 @@
 from agent import get_agent
 from langchain_core.messages import HumanMessage
 
-agent = get_agent("gemini-2.5-flash-lite")
+agent = get_agent("gemini-3.6-flash")
 
 config = {
     "configurable": {

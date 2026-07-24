@@ -21,17 +21,13 @@ from tools import tools
 
 Path("data").mkdir(exist_ok=True)
 
-DEFAULT_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+DEFAULT_MODEL = os.getenv("GOOGLE_MODEL", "gemini-3.6-flash")
 
 ALLOWED_MODELS = {
-    "gemini-2.5-flash",
-    "gemini-2.5-pro",
-    "gemini-2.5-flash-lite",
+    "gemini-3.6-flash",
     "gemini-1.5-flash",
     "gemini-1.5-pro",
 }
-
-
 
 SYSTEM_PROMPT = """
 You are a helpful Agentic AI assistant named BappyGPT similar to ChatGPT.
