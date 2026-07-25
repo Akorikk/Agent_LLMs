@@ -34,7 +34,7 @@ vectorstore = Chroma(
 
 
 def read_file_text(file_path: str) -> str:
-    path = Path(file_path)
+    path = Path(file_path) # This converts the string into a Path object. why this important cuz Because a string only stores text. example file_path = "uploads/Resume.PDF" Python only sees:u p l o a d s / R e s u m e . P D F It doesn't know:Where is the filename?What is the extension?Which folder is it in?It's just text.But when you convert it into a Path object, Python now understands it is a file path.
     suffix = path.suffix.lower()
 
     if suffix == ".pdf":
