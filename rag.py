@@ -96,8 +96,6 @@ def add_document_to_rag(file_path: str, thread_id: str):
 
 
 
-
-
 def retrieve_from_rag(query: str, thread_id: str, k: int = 4) -> str:
     docs = vectorstore.similarity_search(
         query,
