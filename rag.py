@@ -43,7 +43,7 @@ Output: .PDF Another example:path = Path("report.docx")
 path.suffix returns .docx
 """
 
-    if suffix == ".pdf":
+    if suffix == ".pdf":  #if suffix is equal to pdf then This is a PDF. I must use the PDF reader.
         reader = PdfReader(file_path)
         text = ""
 
@@ -60,7 +60,6 @@ path.suffix returns .docx
         return path.read_text(encoding="utf-8", errors="ignore")
 
     raise ValueError("Unsupported file type. Upload PDF, DOCX, TXT, MD, PY, or CSV.")
-
 
 
 
@@ -118,3 +117,4 @@ def retrieve_from_rag(query: str, thread_id: str, k: int = 4) -> str:
         )
 
     return "\n\n".join(results)
+    
