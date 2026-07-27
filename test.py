@@ -8,3 +8,22 @@ client = genai.Client(api_key=os.getenv("GOOGLE_API_KEY"))
 
 for model in client.models.list():
     print(model.name)
+
+from agent import get_agent
+from langchain_core.messages import HumanMessage
+
+agent = get_agent("gemini-3.6-flash")
+
+config = {
+    "configurable": {
+        "thread_id": "test_thread_id",
+    }
+}
+
+for message_chunk, metadata in agent.stream(
+    {"messages": [HumanMessage(content="Hello, how are you?")]},
+    config=config,
+    stream_mode="messages",
+):
+    if message_chunk.content:
+        print(message_chunk.content, end="", flush=True)
